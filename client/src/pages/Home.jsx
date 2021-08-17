@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
+import '../styles/global.css'
 import apiHandler from '../api/apiHandler';
 
 const Map = ReactMapboxGl({
@@ -15,36 +15,48 @@ class Home extends React.Component {
 
   async componentDidMount() {
     try {
-      const { data } = await apiHandler.getItems;
-      console.log("datat received",data)
+      const data = await apiHandler.getItems();
       this.setState({
         items: data,
-      })
+      });
     } catch (e) {
       console.error(e);
     }
   }
 
   render() {
-    console.log(this.state.items)
+    console.log(this.state.items);
     if (this.state.items === null)
       return <div className="loading">Loading...</div>;
+      const center = [2.3488, 48.8534]
     return (
       <div>
         <Map
           style="mapbox://styles/mapbox/streets-v9"
+          center={center}
           containerStyle={{
             height: '100vh',
             width: '100vw',
           }}
         >
-          <Layer
-            type="symbol"
-            id="marker"
-            layout={{ 'icon-image': 'marker-15' }}
-          >
-            <Feature coordinates={[48.852209, 2.355411]} />
-          </Layer>
+          {/* <Marker coordinates={this.state.items[0].location.coordinates}>
+          <img src={this.state.items[0].image} alt="" />
+          </Marker> */}
+          {this.state.items.map((item) => {
+            console.log(item.location.coordinates);
+            return (
+              <Marker
+                key={item._id}
+                anchor="center"
+                coordinates={[
+                  item.location.coordinates[1],
+                  item.location.coordinates[0],
+                ]}
+              >
+                <img className="marker" src={item.image} alt="Gotcha" />
+              </Marker>
+            );
+          })}
         </Map>
         ;
       </div>

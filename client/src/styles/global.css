@@ -33,3 +33,8 @@ h2 {
   color: #5663ff;
   font-weight: 700;
 }
+
+.marker {
+  height: 5rem;
+  width: auto;
+}

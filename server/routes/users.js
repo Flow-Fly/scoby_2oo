@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const requireAuth = require("../middlewares/requireAuth");
-const mongoose = require("mongoose");
-const Item = require("../models/Item")
+// const Item = require("../models/Item")
 
 router.patch("/me", requireAuth, async (req, res, next) => {
   try {
