@@ -6,6 +6,7 @@ import '../styles/CardItem.css';
 import Button from '../components/Base/Button';
 import apiHandler from '../api/apiHandler';
 import ListMyItems from '../components/Base/ListMyItems';
+import {withRouter} from 'react-router-dom'
 
 class Profile extends Component {
   state = {
@@ -35,6 +36,7 @@ class Profile extends Component {
     await apiHandler.editUser({
       phoneNumber: this.state.phoneNumber,
     });
+    this.props.history.push("/profile")
   };
 
   render() {
@@ -129,4 +131,4 @@ class Profile extends Component {
     );
   }
 }
-export default withUser(Profile);
+export default withRouter(withUser(Profile));

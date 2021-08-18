@@ -76,6 +76,9 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+  deleteItem(id) {
+    return service.delete("/api/items/" + id).then().catch(errorHandler)
+  }
 };
 
 export default apiHandler;

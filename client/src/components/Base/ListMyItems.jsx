@@ -1,6 +1,7 @@
 import React from 'react';
 import apiHandler from '../../api/apiHandler';
 import '../../styles/ListMyItems.css';
+import UserCardItem from '../Base/UserItemCard'
 
 class ListMyItems extends React.Component {
   state = {
@@ -16,6 +17,21 @@ class ListMyItems extends React.Component {
       console.error(e);
     }
   }
+
+   deleteItem = async (id) => {
+    try {
+      await apiHandler.deleteItem(id);
+      const res = await apiHandler.getUserItems();
+      this.setState({
+        myItems: res,
+      });
+    } catch (e) {console.error(e)}
+    
+  }
+
+
+
+
   render() {
     if (this.state.myItems === null)
       return <div className="loading">Loading...</div>;
@@ -34,24 +50,7 @@ class ListMyItems extends React.Component {
         {this.state.myItems.length > 0 &&
           this.state.myItems.map((item) => {
             return (
-              <div key={item._id} className="user-item-card">
-                <h3>Your items</h3>
-                <div className="item">
-                  <div className="round-image">
-                    <img src={item.image} alt="item" />
-                  </div>
-                  <div className="description">
-                    <h2>{item.name}</h2>
-                    <h4>Quantity: {item.quantity} </h4>
-                    <p>{item.description}</p>
-                    <div className="buttons">
-                      <button className="btn-secondary">Delete</button>
-
-                      <button className="btn-primary">Edit</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <UserCardItem item={item} deleteItem={() => {this.deleteItem(item._id)}}/>
             );
           })}
       </div>

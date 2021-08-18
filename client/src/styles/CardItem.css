@@ -1,6 +1,6 @@
 .CardItem {
   margin-top: 50px;
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
