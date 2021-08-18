@@ -69,8 +69,8 @@ class Home extends React.Component {
                 id={item._id}
                 anchor="center"
                 coordinates={[
-                  item.location.coordinates[1],
                   item.location.coordinates[0],
+                  item.location.coordinates[1],
                 ]}
               >
                 <img

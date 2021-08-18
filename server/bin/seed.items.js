@@ -13,7 +13,7 @@ const items = [
     quantity: 3,
     address: "221 Boulevard Voltaire",
     location: {
-      coordinates: [48.8566, 2.3522],
+      coordinates: [2.3522,48.8566],
     },
     formattedAddress: "221 Boulevard Voltaire",
     creator: "the id of the user",
@@ -27,7 +27,7 @@ const items = [
     quantity: 3,
     address: "221 Boulevard Voltaire",
     location: {
-      coordinates: [48.85636, 2.3522],
+      coordinates: [2.3522,48.8566],
     },
     formattedAddress: "221 Boulevard Voltaire",
     creator: "the id of the user",
@@ -41,7 +41,7 @@ const items = [
     quantity: 3,
     address: "221 Boulevard Voltaire",
     location: {
-      coordinates: [48.8966, 2.3522],
+      coordinates: [2.3522,48.8966],
     },
     formattedAddress: "221 Boulevard Voltaire",
     creator: "the id of the user",
