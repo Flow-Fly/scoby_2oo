@@ -4,11 +4,12 @@ import Button from '../Base/Button';
 import '../../styles/form.css';
 import apiHandler from '../../api/apiHandler';
 
+
 class ItemForm extends Component {
   state = {
     // items: null,
     name: "",
-    category: "",
+    category: "Plant",
     quantity: 0,
     formattedAddress: "",
     location: {},
@@ -59,8 +60,11 @@ class ItemForm extends Component {
 
     this.buildFormData(formData, this.state)
     console.log('handle submit called')
+    console.log(this.state)
     apiHandler.createOneItem(formData)
-      .then((dbREs)=>{console.log(`dbREs`, dbREs)})
+      .then((dbREs)=>{
+        this.props.history.push('/');
+      })
       .catch((error)=>{console.log(`error`, error)})
     
 
@@ -128,7 +132,7 @@ class ItemForm extends Component {
               Category
             </label>
 
-            <select id="category" defaultValue="-1" name="category" value={this.state.category} onChange={this.handleChange}>
+            <select id="category"  name="category" value={this.state.category} onChange={this.handleChange}>
               <option value="-1" disabled>
                 Select a category
               </option>
