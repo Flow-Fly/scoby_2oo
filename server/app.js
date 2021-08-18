@@ -10,9 +10,7 @@ const MongoStore = require('connect-mongo'); // https://www.npmjs.com/package/co
 const cors = require('cors');
 const app = express();
 
-/*
- * Middlewares
- */
+
 
 app.use(
   cors({

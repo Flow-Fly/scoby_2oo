@@ -38,7 +38,6 @@ router.get("/me/items", requireAuth, async (req,res) => {
     // console.log("answer", typeof objectId)
     // console.log(typeof req.session.currentUser, req.session.currentUser)
     const dbRes = await Item.find({creator: req.session.currentUser});
-    console.log("dbres", dbRes)
     res.status(200).json(dbRes)
   }
   catch (error) {

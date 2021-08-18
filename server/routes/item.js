@@ -3,7 +3,9 @@ const router = express.Router();
 const Item = require('../models/Item');
 const { route } = require('./auth');
 const requireAuth = require('../middlewares/requireAuth');
+
 const uploader = require("../config/cloudinary");
+
 
 // GET	/api/items	Gets all the items in the DB
 router.get('/', (req, res, next) => {

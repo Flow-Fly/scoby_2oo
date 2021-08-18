@@ -61,14 +61,12 @@ class Home extends React.Component {
             width: '100vw',
           }}
         >
-          {/* <Marker coordinates={this.state.items[0].location.coordinates}>
-          <img src={this.state.items[0].image} alt="" />
-          </Marker> */}
           {this.state.items.map((item) => {
             // console.log(item.location.coordinates);
             return (
               <Marker
                 key={item._id}
+                id={item._id}
                 anchor="center"
                 coordinates={[
                   item.location.coordinates[1],
