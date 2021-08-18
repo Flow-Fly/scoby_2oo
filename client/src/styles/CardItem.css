@@ -1,11 +1,26 @@
 .CardItem {
   margin-top: 50px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  left: 25px;
+  top: 0;
+  box-shadow: 0 0 50px #d3d3d3;
+  border-radius: 20px;
+  background-color: #fff;
+  width: 450px;
+  padding: 25px;
+  margin: 75px auto;
+  z-index: 100;
+  overflow-y: auto;
+  max-height: 75vh;
 }
 
 .CardItem .item {
   display: flex;
   padding: 20px 40px;
-  flex-direction: row-reverse;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   background: white;
@@ -15,8 +30,8 @@
 }
 
 .CardItem .round-image {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 100%;
   overflow: hidden;
   position: relative;
@@ -71,4 +86,12 @@
 
 .CardItem > h3 {
   text-align: center;
+}
+
+.profileImg {
+  width: 30px;
+}
+
+.item span {
+  align-self: flex-start;
 }

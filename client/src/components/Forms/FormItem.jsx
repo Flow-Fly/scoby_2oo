@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import LocationAutoComplete from "../LocationAutoComplete";
-import Button from "../Base/Button";
-import "../../styles/form.css";
+import React, { Component } from 'react';
+import LocationAutoComplete from '../LocationAutoComplete';
+import Button from '../Base/Button';
+import '../../styles/form.css';
 
 class ItemForm extends Component {
-  state = {};
+  state = {
+    items: null,
+  };
 
   handleChange(event) {
-    console.log("Wax On Wax Off");
+    console.log('Wax On Wax Off');
     this.setState({});
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Wax On Wax Off");
+    console.log('Wax On Wax Off');
 
     // In order to send back the data to the client, since there is an input type file you have to send the
     // data as formdata.
