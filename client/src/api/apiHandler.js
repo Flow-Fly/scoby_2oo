@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const service = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
@@ -18,35 +18,42 @@ const apiHandler = {
 
   signup(userInfo) {
     return service
-      .post("/api/auth/signup", userInfo)
+      .post('/api/auth/signup', userInfo)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   signin(userInfo) {
     return service
-      .post("/api/auth/signin", userInfo)
+      .post('/api/auth/signin', userInfo)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   isLoggedIn() {
     return service
-      .get("/api/auth/isLoggedIn")
+      .get('/api/auth/isLoggedIn')
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   logout() {
     return service
-      .get("/api/auth/logout")
+      .get('/api/auth/logout')
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   getItems() {
     return service
-      .get("/api/items")
+      .get('/api/items')
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getOneItem(id) {
+    return service
+      .get(`/api/items/${id}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
