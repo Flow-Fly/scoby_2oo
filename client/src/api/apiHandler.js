@@ -58,14 +58,24 @@ const apiHandler = {
       .catch(errorHandler);
   },
   createOneItem(item) {
-    console.log('create item called')
+    console.log('create item called');
     return service
-      .post(`/api/items/`,item)
+      .post(`/api/items/`, item)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+  editUser(body) {
+    return service
+      .patch(`/api/users/me`, body)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+  getUserItems() {
+    return service
+      .get(`/api/users/me/items`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 };
-
-
 
 export default apiHandler;
