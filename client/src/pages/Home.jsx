@@ -25,7 +25,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.state.items);
     if (this.state.items === null)
       return <div className="loading">Loading...</div>;
       const center = [2.3488, 48.8534]
@@ -39,14 +38,12 @@ class Home extends React.Component {
             width: '100vw',
           }}
         >
-          {/* <Marker coordinates={this.state.items[0].location.coordinates}>
-          <img src={this.state.items[0].image} alt="" />
-          </Marker> */}
           {this.state.items.map((item) => {
             console.log(item.location.coordinates);
             return (
               <Marker
                 key={item._id}
+                id={item._id}
                 anchor="center"
                 coordinates={[
                   item.location.coordinates[1],

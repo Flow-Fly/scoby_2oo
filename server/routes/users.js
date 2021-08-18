@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const requireAuth = require("../middlewares/requireAuth");
-// const Item = require("../models/Item")
+const Item = require("../models/Item")
 
 router.patch("/me", requireAuth, async (req, res, next) => {
   try {
@@ -32,7 +32,6 @@ router.get("/me/items", requireAuth, async (req,res) => {
     // console.log("answer", typeof objectId)
     // console.log(typeof req.session.currentUser, req.session.currentUser)
     const dbRes = await Item.find({creator: req.session.currentUser});
-    console.log("dbres", dbRes)
     res.status(200).json(dbRes)
   }
   catch (error) {

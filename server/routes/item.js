@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Item = require('../models/Item');
-const { route } = require('./auth');
 const requireAuth = require('../middlewares/requireAuth')
 
 // GET	/api/items	Gets all the items in the DB
