@@ -3,6 +3,7 @@ const router = express.Router();
 const Item = require('../models/Item');
 const { route } = require('./auth');
 const requireAuth = require('../middlewares/requireAuth');
+const uploader = require("../config/cloudinary");
 
 // GET	/api/items	Gets all the items in the DB
 router.get('/', (req, res, next) => {
@@ -24,8 +25,15 @@ router.get('/:id', (req, res) => {
 });
 
 // POST	/api/items	Create an item in the DB	Requires auth.
-router.post('/', requireAuth, (req, res) => {
+router.post('/', requireAuth, uploader.single("image"), (req, res) => {
   const item = req.body;
+
+  if(req.file) {
+    item.image = req.file.path;
+  } else {
+    item.image = undefined
+  }
+
   item.creator = req.session.currentUser;
 
   Item.create(item)
@@ -36,9 +44,14 @@ router.post('/', requireAuth, (req, res) => {
 });
 
 // PATCH	/api/items/:id	Update an item	Requires auth.
-router.patch('/:id', requireAuth, async (req, res) => {
+router.patch('/:id', requireAuth, uploader.single("image"), async (req, res) => {
   try {
     const foundItem = await Item.findById(req.params.id);
+
+    if(req.file) {
+      foundItem.image = req.file.path;
+    }
+
     const currentUser = req.session.currentUser.toString();
 
     if (foundItem.creator.toString() === currentUser) {

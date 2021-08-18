@@ -2,11 +2,17 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const requireAuth = require("../middlewares/requireAuth");
-// const Item = require("../models/Item")
+const Item = require("../models/Item");
+const uploader = require("../config/cloudinary");
 
-router.patch("/me", requireAuth, async (req, res, next) => {
+router.patch("/me", requireAuth, uploader.single("profileImg"), async (req, res, next) => {
   try {
+    if(req.file) {
+      req.body.profileImg = req.file.path;
+    }
+
     const dbRes = await User.findByIdAndUpdate(req.session.currentUser, req.body, { new: true });
+    
     res.status(200).json(dbRes)
   }
   catch (error) {
