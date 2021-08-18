@@ -5,8 +5,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "mapbox-gl": "^1.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-mapbox-gl": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^4.0.3"
   },
