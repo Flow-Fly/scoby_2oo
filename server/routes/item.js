@@ -28,21 +28,22 @@ router.get('/:id', (req, res) => {
 
 // POST	/api/items	Create an item in the DB	Requires auth.
 router.post('/', requireAuth, uploader.single("image"), (req, res) => {
-  const item = req.body;
+  
+  let item = req.body;
 
-  if(req.file) {
-    item.image = req.file.path;
-  } else {
-    item.image = undefined
-  }
+   if(req.file) {
+     item.image = req.file.path;
+   } else {
+     item.image = undefined
+   }
 
-  item.creator = req.session.currentUser;
+   item.creator = req.session.currentUser;
 
-  Item.create(item)
-    .then((dbRes) => {
-      res.status(201).json(dbRes);
-    })
-    .catch((err) => res.status(500).json(err));
+   Item.create(item)
+     .then((dbRes) => {
+       res.status(201).json(dbRes);
+     })
+     .catch((err) => res.status(500).json(err));
 });
 
 // PATCH	/api/items/:id	Update an item	Requires auth.

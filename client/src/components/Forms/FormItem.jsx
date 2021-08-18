@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LocationAutoComplete from '../LocationAutoComplete';
 import Button from '../Base/Button';
 import '../../styles/form.css';
+import apiHandler from '../../api/apiHandler';
 
 class ItemForm extends Component {
   state = {
@@ -57,6 +58,11 @@ class ItemForm extends Component {
     // formData.append("image", this.state.image);
 
     this.buildFormData(formData, this.state)
+    console.log('handle submit called')
+    apiHandler.createOneItem(formData)
+      .then((dbREs)=>{console.log(`dbREs`, dbREs)})
+      .catch((error)=>{console.log(`error`, error)})
+    
 
 
     // formData.append("location", this.state.location)
@@ -65,7 +71,7 @@ class ItemForm extends Component {
     //   console.log(values)
     // }
 
-    console.log(formData.get("location"))
+    // console.log(formData.get("location"))
 
     // console.log(formData.getAll("location"))
 
@@ -87,7 +93,7 @@ class ItemForm extends Component {
     // Take a look at the data and see what you can get from it.
     // Look at the item model to know what you should retrieve and set as state.
 
-    console.log(place);
+    //console.log(place);
 
     this.setState({
       formattedAddress: place.place_name,
@@ -165,7 +171,7 @@ class ItemForm extends Component {
             <label className="custom-upload label" htmlFor="image">
               Upload image
             </label>
-            <input className="input" id="image" type="file" onChange={this.handleChange}/>
+            <input className="input" id="image" type="file" name='image' onChange={this.handleChange}/>
           </div>
 
           <h2>Contact information</h2>

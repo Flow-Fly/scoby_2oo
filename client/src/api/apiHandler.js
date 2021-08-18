@@ -57,6 +57,15 @@ const apiHandler = {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+  createOneItem(item) {
+    console.log('create item called')
+    return service
+      .post(`/api/items/`,item)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
+
+
 
 export default apiHandler;
